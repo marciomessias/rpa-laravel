@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+
+  rpa-laravel:
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    container_name: laravel
+    volumes:
+      - ./:/var/www
+    ports:
+      - 8000:8000
+    networks:
+      - rpa
+
+  rpa-mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - rpa
+
+  rpa-selenium:
+    image: 'selenium/standalone-chrome'
+    container_name: selenium
+    shm_size: 2gb
+    ports:
+      - 4444:4444
+    networks:
+        - rpa
+
+networks:
+  rpa:
+    driver: bridge
