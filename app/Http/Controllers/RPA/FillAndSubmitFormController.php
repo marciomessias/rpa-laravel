@@ -25,6 +25,11 @@ class FillAndSubmitFormController extends Controller
 
             $driver->manage()->window()->maximize();
 
+            $h1BasicForm = $driver->findElement(WebDriverBy::cssSelector('.page-body > h1'))->getText();
+            if (strcmp($h1BasicForm, 'Basic HTML Form Example')) {
+                throw new \Exception('O elemento H1 com o título "Basic HTML Form Example" não existe');
+            }
+
             #Username
             $driver->findElement(WebDriverBy::name('username'))->clear();
             $driver->findElement(WebDriverBy::name('username'))->click();
@@ -69,11 +74,18 @@ class FillAndSubmitFormController extends Controller
             #submit
             $driver->findElement(WebDriverBy::cssSelector('input[type=submit]'))->click();
 
+            #verificar se a tela seguinte ao submit tem o título 'Processed Form Details'
+            $h1ProcessForm = $driver->findElement(WebDriverBy::cssSelector('.page-body > h1'))->getText();
+            if (strcmp($h1ProcessForm, 'Processed Form Details')) {
+                throw new \Exception('Não foi possível submeter o formulário, o elemento H1 com o título "Processed Form Details" não existe');
+            }
+
             Log::info('FillAndSubmitFormController.init - RPA executado com sucesso!');
 
         } catch(\Exception $e) {
 
-            Log::error("FillAndSubmitFormController.init {$e->getMessage()}");
+            Log::error("FillAndSubmitFormController.init - {$e->getMessage()}");
+
         }
 
         $driver->quit();
