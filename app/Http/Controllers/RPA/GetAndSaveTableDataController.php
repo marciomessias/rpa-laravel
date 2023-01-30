@@ -16,9 +16,9 @@ class GetAndSaveTableDataController extends Controller
 
     public function init()
     {
-        try {
+        $driver = RemoteWebDriver::create(env('SERVER_SELENIUM'), DesiredCapabilities::chrome());
 
-            $driver = RemoteWebDriver::create(env('SERVER_SELENIUM'), DesiredCapabilities::chrome());
+        try {
 
             $driver->get('https://testpages.herokuapp.com/styled/tag/table.html');
 
@@ -36,14 +36,14 @@ class GetAndSaveTableDataController extends Controller
                 ]);
             }
 
-            $driver->quit();
-
             Log::info('GetAndSaveTableDataController.init - RPA executado com sucesso!');
 
         } catch(\Exception $e) {
 
             Log::error("GetAndSaveTableDataController.init {$e->getMessage()}");
         }
+
+        $driver->quit();
 
     }
 }

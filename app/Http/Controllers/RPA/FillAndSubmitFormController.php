@@ -17,11 +17,11 @@ class FillAndSubmitFormController extends Controller
 
     public function init()
     {
+        $driver = RemoteWebDriver::create(env('SERVER_SELENIUM'), DesiredCapabilities::chrome());
+
         try {
 
-            $driver = RemoteWebDriver::create(env('SERVER_SELENIUM'), DesiredCapabilities::chrome());
-
-            $driver->get('https://testpages.herokuapp.com/styled/basic-html-form-test.htm');
+            $driver->get('https://testpages.herokuapp.com/styled/basic-html-form-test.html');
 
             $driver->manage()->window()->maximize();
 
@@ -71,14 +71,12 @@ class FillAndSubmitFormController extends Controller
 
             Log::info('FillAndSubmitFormController.init - RPA executado com sucesso!');
 
-            $driver->quit();
-
-            Log::info('FillAndSubmitFormController.init - RPA executado com sucesso!');
-
         } catch(\Exception $e) {
 
             Log::error("FillAndSubmitFormController.init {$e->getMessage()}");
         }
+
+        $driver->quit();
 
     }
 }
