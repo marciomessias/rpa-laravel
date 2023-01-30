@@ -26,7 +26,7 @@ class GetAndSaveTableDataController extends Controller
 
             $caption = $driver->findElement(WebDriverBy::cssSelector('#mytable > caption'))->getText();
 
-            if (strcmp($caption, 'This table has information')) {
+            if ($caption !== 'This table has information') {
                 throw new \Exception('Tabela "This table has information" não existe');
             }
 

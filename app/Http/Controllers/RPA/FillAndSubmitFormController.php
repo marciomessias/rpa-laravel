@@ -32,7 +32,7 @@ class FillAndSubmitFormController extends Controller
             $driver->takeScreenshot(Storage::path('img/'.(new \DateTime('now'))->format('Y-m-d|H:i:s.u').'-fillAndSubmitInicio.png'));
 
             $h1BasicForm = $driver->findElement(WebDriverBy::cssSelector('.page-body > h1'))->getText();
-            if (strcmp($h1BasicForm, 'Basic HTML Form Example')) {
+            if ($h1BasicForm !== 'Basic HTML Form Example') {
                 throw new \Exception('O elemento H1 com o título "Basic HTML Form Example" não existe');
             }
 
@@ -94,7 +94,7 @@ class FillAndSubmitFormController extends Controller
 
             #verificar se a tela seguinte ao submit tem o título 'Processed Form Details'
             $h1ProcessForm = $driver->findElement(WebDriverBy::cssSelector('.page-body > h1'))->getText();
-            if (strcmp($h1ProcessForm, 'Processed Form Details')) {
+            if ($h1ProcessForm !== 'Processed Form Details') {
                 throw new \Exception('Não foi possível submeter o formulário, o elemento H1 com o título "Processed Form Details" não existe');
             }
 
