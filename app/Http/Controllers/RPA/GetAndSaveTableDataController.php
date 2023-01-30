@@ -11,8 +11,8 @@ use App\Models\RpaTableData;
 
 class GetAndSaveTableDataController extends Controller
 {
-    const NAME = '0';
-    const AMOUNT = '1';
+    private const NAME = '0';
+    private const AMOUNT = '1';
 
     public function init()
     {
