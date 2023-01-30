@@ -13,4 +13,6 @@ class RpaTableData extends Model
         'name',
         'amount'
     ];
+
+    public $timestamps = false;
 }
