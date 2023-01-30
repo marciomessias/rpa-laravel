@@ -22,6 +22,12 @@ class GetAndSaveTableDataController extends Controller
 
             $driver->get('https://testpages.herokuapp.com/styled/tag/table.html');
 
+            $caption = $driver->findElement(WebDriverBy::cssSelector('#mytable > caption'))->getText();
+
+            if (strcmp($caption, 'This table has information')) {
+                throw new \Exception('Tabela "This table has information" não existe');
+            }
+
             $trs = $driver->findElements(WebDriverBy::cssSelector('#mytable tr'));
 
             array_shift($trs);
@@ -40,7 +46,7 @@ class GetAndSaveTableDataController extends Controller
 
         } catch(\Exception $e) {
 
-            Log::error("GetAndSaveTableDataController.init {$e->getMessage()}");
+            Log::error("GetAndSaveTableDataController.init - {$e->getMessage()}");
         }
 
         $driver->quit();
