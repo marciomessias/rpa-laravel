@@ -20,6 +20,8 @@ class GetAndSaveTableDataController extends Controller
 
         try {
 
+            $driver->manage()->timeouts()->implicitlyWait = 10;
+
             $driver->get('https://testpages.herokuapp.com/styled/tag/table.html');
 
             $caption = $driver->findElement(WebDriverBy::cssSelector('#mytable > caption'))->getText();
