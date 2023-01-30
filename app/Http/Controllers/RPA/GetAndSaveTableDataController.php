@@ -22,17 +22,13 @@ class GetAndSaveTableDataController extends Controller
 
             $driver->get('https://testpages.herokuapp.com/styled/tag/table.html');
 
-            $trs = $driver->findElements(
-                WebDriverBy::cssSelector('#mytable tr')
-            );
+            $trs = $driver->findElements(WebDriverBy::cssSelector('#mytable tr'));
 
             array_shift($trs);
 
             foreach($trs as $tr) {
 
-                $tds = $tr->findElements(
-                    WebDriverBy::cssSelector('td')
-                );
+                $tds = $tr->findElements(WebDriverBy::cssSelector('td'));
 
                 RpaTableData::create([
                     'name' => $tds[self::NAME]->getText(),
