@@ -38,11 +38,11 @@ class GetAndSaveTableDataController extends Controller
 
             $driver->quit();
 
-            Log::info("GetAndSaveTableDataController.init - RPA executado com sucesso!");
+            Log::info('GetAndSaveTableDataController.init - RPA executado com sucesso!');
 
         } catch(\Exception $e) {
 
-            Log::error("GetAndSaveTableDataController.init " . $e->getMessage());
+            Log::error("GetAndSaveTableDataController.init {$e->getMessage()}");
         }
 
     }
