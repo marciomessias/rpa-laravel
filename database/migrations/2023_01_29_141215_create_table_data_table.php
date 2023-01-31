@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rpa_table_data', function (Blueprint $table) {
+        Schema::create('table_data', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('amount');
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rpa_table_data');
+        Schema::dropIfExists('table_data');
     }
 };

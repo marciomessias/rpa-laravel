@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\RPA;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RpaTableData extends Model
+class TableData extends Model
 {
     use HasFactory;
 

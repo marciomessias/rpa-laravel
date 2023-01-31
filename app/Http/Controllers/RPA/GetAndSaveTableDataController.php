@@ -5,7 +5,7 @@ namespace App\Http\Controllers\RPA;
 use Illuminate\Support\Facades\Log;
 use Facebook\WebDriver\WebDriverBy;
 use App\Http\Controllers\DriverController;
-use App\Models\RpaTableData;
+use App\Models\RPA\TableData;
 
 class GetAndSaveTableDataController extends DriverController
 {
@@ -51,7 +51,7 @@ class GetAndSaveTableDataController extends DriverController
 
             $tds = $tr->findElements(WebDriverBy::cssSelector('td'));
 
-            RpaTableData::create([
+            TableData::create([
                 'name' => $tds[self::NAME]->getText(),
                 'amount' => $tds[self::AMOUNT]->getText()
             ]);
