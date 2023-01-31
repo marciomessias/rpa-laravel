@@ -36,9 +36,7 @@ COPY --chown=www:www . /var/www
 
 RUN mkdir -p /var/www/storage/selenium
 
-RUN chown www:www /var/www/storage/selenium
-
-RUN chmod -R 777 /var/www/storage/selenium
+RUN chown -R www:www /var/www/storage/selenium
 
 USER www
 

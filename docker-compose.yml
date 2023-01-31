@@ -40,7 +40,6 @@ services:
 
 volumes:
   selenium:
-    external: true
 
 networks:
   rpa:

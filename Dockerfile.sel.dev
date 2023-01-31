@@ -2,8 +2,6 @@ FROM selenium/standalone-chrome
 
 RUN mkdir -p /home/seluser/Downloads
 
-RUN chown seluser:seluser /home/seluser/Downloads
-
-RUN chmod -R 777 /home/seluser/Downloads
+RUN chown -R seluser:seluser /var/www/storage/selenium
 
 USER seluser
