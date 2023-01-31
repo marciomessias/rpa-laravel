@@ -4,4 +4,6 @@ RUN mkdir -p /home/seluser/Downloads
 
 RUN chown seluser:seluser /home/seluser/Downloads
 
+RUN chmod -R 777 /home/seluser/Downloads
+
 USER seluser

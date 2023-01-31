@@ -32,11 +32,13 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 
 COPY . /var/www
 
-#RUN mkdir -p /var/www/storage/app/selenium
-
 COPY --chown=www:www . /var/www
 
-#RUN chown www:www /var/www
+RUN mkdir -p /var/www/storage/selenium
+
+RUN chown www:www /var/www/storage/selenium
+
+RUN chmod -R 777 /var/www/storage/selenium
 
 USER www
 
