@@ -9,7 +9,7 @@ services:
     container_name: laravel
     volumes:
       - ./:/var/www
-      - selenium:/var/www/storage/selenium
+      - selenium:/var/www/storage/app/selenium
     ports:
       - 8000:8000
     networks:

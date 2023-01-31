@@ -34,9 +34,9 @@ COPY . /var/www
 
 COPY --chown=www:www . /var/www
 
-RUN mkdir -p /var/www/storage/selenium
+RUN mkdir -p /var/www/storage/app/selenium
 
-RUN chown -R www:www /var/www/storage/selenium
+RUN chown -R www:www /var/www/storage/app/selenium
 
 USER www
 
