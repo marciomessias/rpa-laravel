@@ -2,30 +2,30 @@
 
 namespace App\Http\Controllers\RPA;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\DriverController;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use Facebook\WebDriver\Remote\RemoteWebDriver;
-use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\WebDriverBy;
 
-class DownloadAndSaveFileController extends Controller
+class DownloadAndSaveFileController extends DriverController
 {
+    private $seleniumPath;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->seleniumPath = Storage::path('selenium/');
+    }
+
     public function init()
     {
-        $driver = RemoteWebDriver::create(env('SERVER_SELENIUM'), DesiredCapabilities::chrome());
-
         try {
 
-            $driver->manage()->timeouts()->implicitlyWait = 10;
-
-            $driver->get('https://testpages.herokuapp.com/styled/download/download.html');
-
-            $directDownloadId = $driver->findElement(WebDriverBy::id('direct-download'))->click();
+            $this->callFirstPage();
 
             sleep(3);
 
-            Storage::copy(Storage::path('selenium/').$this->getLastFile(), Storage::path('downloaded/').'Teste TKS');
+            Storage::copy("selenium/{$this->getLastFile()}", 'downloaded/Teste TKS');
 
             Log::info('DownloadAndSaveFile.init - RPA executado com sucesso!');
 
@@ -33,8 +33,13 @@ class DownloadAndSaveFileController extends Controller
 
             Log::error("DownloadAndSaveFile.init - {$e->getMessage()}");
         }
+    }
 
-        $driver->quit();
+    private function callFirstPage()
+    {
+        $this->driver->get('https://testpages.herokuapp.com/styled/download/download.html');
+
+        $this->driver->findElement(WebDriverBy::id('direct-download'))->click();
     }
 
     private function getLastFile()
@@ -42,7 +47,7 @@ class DownloadAndSaveFileController extends Controller
         $timestamp = null;
         $lastFile = null;
 
-        $directory = new \DirectoryIterator(Storage::path('selenium/'));
+        $directory = new \DirectoryIterator($this->seleniumPath);
         foreach ($directory as $info) {
             if (!$info->isDot() && $info->getMTime() > $timestamp) {
                 $lastFile = $info->getFilename();
