@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\RPA;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\WebDriverBy;
-use App\Http\Controllers\Controller;
 use App\Models\RpaTableData;
 
 class GetAndSaveTableDataController extends Controller

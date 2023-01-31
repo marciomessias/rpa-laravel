@@ -5,10 +5,11 @@ services:
   rpa-laravel:
     build:
       context: ./
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile.lar.dev
     container_name: laravel
     volumes:
       - ./:/var/www
+      - selenium:/var/www/storage/app/selenium
     ports:
       - 8000:8000
     networks:
@@ -24,6 +25,9 @@ services:
       - rpa
 
   rpa-selenium:
+    build:
+      context: ./
+      dockerfile: Dockerfile.sel.dev
     image: 'selenium/standalone-chrome'
     container_name: selenium
     shm_size: 2gb
@@ -31,6 +35,11 @@ services:
       - 4444:4444
     networks:
         - rpa
+    volumes:
+      - selenium:/home/seluser/Downloads
+
+volumes:
+  selenium:
 
 networks:
   rpa:

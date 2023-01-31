@@ -1,5 +1,7 @@
-## Instrução para subir ambiente de desenvolvimento
+## Instruções para subir ambiente de desenvolvimento
 
 - cp .env.example .env
-- docker-compose up -d
-- docker exec laravel php artisan schedule:work
+- docker-compose up --build -d
+- docker exec laravel php artisan migrate
+### Listagem dos comandos para executar robôs (Iniciados com rpa:)
+- docker exec laravel php artisan list
