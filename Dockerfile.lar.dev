@@ -34,12 +34,6 @@ COPY . /var/www
 
 COPY --chown=www:www . /var/www
 
-RUN mkdir -p /var/www/storage/app/selenium
-RUN mkdir -p /var/www/storage/app/downloaded
-
-RUN chown -R www:www /var/www/storage/app/selenium
-RUN chown -R www:www /var/www/storage/app/downloaded
-
 USER www
 
 CMD bash -c "composer install && php artisan serve --host=0.0.0.0"

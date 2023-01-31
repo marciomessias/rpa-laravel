@@ -25,7 +25,7 @@ class DownloadAndSaveFileController extends Controller
 
             sleep(3);
 
-            Storage::move(Storage::path('selenium/').$this->getLastFile(), Storage::path('downloaded/').'Teste TKS');
+            Storage::copy(Storage::path('selenium/').$this->getLastFile(), Storage::path('downloaded/').'Teste TKS');
 
             Log::info('DownloadAndSaveFile.init - RPA executado com sucesso!');
 
