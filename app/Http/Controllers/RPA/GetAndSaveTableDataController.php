@@ -10,6 +10,7 @@ use App\Models\RPA\TableData;
 class GetAndSaveTableDataController extends DriverController
 {
     private const NAME = '0';
+
     private const AMOUNT = '1';
 
     public function main()

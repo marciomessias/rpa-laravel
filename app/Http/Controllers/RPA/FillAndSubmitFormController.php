@@ -11,8 +11,11 @@ use App\Http\Controllers\DriverController;
 class FillAndSubmitFormController extends DriverController
 {
     private $userName = 'marciomessias';
+
     private $password = 'pwdfillteste';
+
     private $comments = 'Comentario TextArea basic form test';
+
     private $fileName = 'doc/fillAndSubmitForm.txt';
 
     public function main()
