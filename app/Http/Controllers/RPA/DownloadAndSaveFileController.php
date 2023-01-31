@@ -11,15 +11,6 @@ use Facebook\WebDriver\WebDriverBy;
 
 class DownloadAndSaveFileController extends Controller
 {
-    private $seleniumPath;
-    private $downloadedPath;
-
-    public function __construction()
-    {
-        $this->seleniumPath = Storage::path('selenium/');
-        $this->downloadedPath = Storage::path('downloaded/');
-    }
-
     public function init()
     {
         $driver = RemoteWebDriver::create(env('SERVER_SELENIUM'), DesiredCapabilities::chrome());
@@ -34,7 +25,7 @@ class DownloadAndSaveFileController extends Controller
 
             sleep(3);
 
-            Storage::move($this->seleniumPath.$this->getLastFile(), "{$this->downloadedPath}Teste TKS}");
+            Storage::move(Storage::path('selenium/').$this->getLastFile(), Storage::path('downloaded/').'Teste TKS');
 
             Log::info('DownloadAndSaveFile.init - RPA executado com sucesso!');
 
@@ -51,7 +42,7 @@ class DownloadAndSaveFileController extends Controller
         $timestamp = null;
         $lastFile = null;
 
-        $directory = new \DirectoryIterator($this->seleniumPath);
+        $directory = new \DirectoryIterator(Storage::path('selenium/'));
         foreach ($directory as $info) {
             if (!$info->isDot() && $info->getMTime() > $timestamp) {
                 $lastFile = $info->getFilename();

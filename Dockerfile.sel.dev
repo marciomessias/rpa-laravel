@@ -2,6 +2,6 @@ FROM selenium/standalone-chrome
 
 RUN mkdir -p /home/seluser/Downloads
 
-RUN chown -R seluser:seluser /var/www/storage/selenium
+RUN chown -R seluser:seluser /home/seluser/Downloads
 
 USER seluser
