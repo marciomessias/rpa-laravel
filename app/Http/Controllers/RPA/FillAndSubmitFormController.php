@@ -17,7 +17,7 @@ class FillAndSubmitFormController extends Controller
     private $comments = 'Comentario TextArea basic form test';
     private $fileName = 'doc/fillAndSubmitForm.txt';
 
-    public function init()
+    public function main()
     {
         $driver = RemoteWebDriver::create(env('SERVER_SELENIUM'), DesiredCapabilities::chrome());
 
@@ -98,11 +98,11 @@ class FillAndSubmitFormController extends Controller
                 throw new \Exception('Não foi possível submeter o formulário, o elemento H1 com o título "Processed Form Details" não existe');
             }
 
-            Log::info('FillAndSubmitFormController.init - RPA executado com sucesso!');
+            Log::info('FillAndSubmitFormController.main - RPA executado com sucesso!');
 
         } catch(\Exception $e) {
 
-            Log::error("FillAndSubmitFormController.init - {$e->getMessage()}");
+            Log::error("FillAndSubmitFormController.main - {$e->getMessage()}");
 
         }
 

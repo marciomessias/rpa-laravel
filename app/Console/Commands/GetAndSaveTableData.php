@@ -28,6 +28,6 @@ class GetAndSaveTableData extends Command
      */
     public function handle()
     {
-        (new GetAndSaveTableDataController())->init();
+        (new GetAndSaveTableDataController())->main();
     }
 }

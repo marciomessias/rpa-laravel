@@ -28,6 +28,6 @@ class FillAndSubmitForm extends Command
      */
     public function handle()
     {
-        (new FillAndSubmitFormController)->init();
+        (new FillAndSubmitFormController)->main();
     }
 }

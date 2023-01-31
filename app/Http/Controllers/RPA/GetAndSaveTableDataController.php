@@ -2,56 +2,59 @@
 
 namespace App\Http\Controllers\RPA;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
-use Facebook\WebDriver\Remote\RemoteWebDriver;
-use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\WebDriverBy;
+use App\Http\Controllers\DriverController;
 use App\Models\RpaTableData;
 
-class GetAndSaveTableDataController extends Controller
+class GetAndSaveTableDataController extends DriverController
 {
     private const NAME = '0';
     private const AMOUNT = '1';
 
-    public function init()
+    public function main()
     {
-        $driver = RemoteWebDriver::create(env('SERVER_SELENIUM'), DesiredCapabilities::chrome());
-
         try {
 
-            $driver->manage()->timeouts()->implicitlyWait = 10;
+            $respTrs = $this->callFirstPage();
 
-            $driver->get('https://testpages.herokuapp.com/styled/tag/table.html');
+            $this->saveTrsData($respTrs);
 
-            $caption = $driver->findElement(WebDriverBy::cssSelector('#mytable > caption'))->getText();
-
-            if ($caption !== 'This table has information') {
-                throw new \Exception('Tabela "This table has information" não existe');
-            }
-
-            $trs = $driver->findElements(WebDriverBy::cssSelector('#mytable tr'));
-
-            array_shift($trs);
-
-            foreach($trs as $tr) {
-
-                $tds = $tr->findElements(WebDriverBy::cssSelector('td'));
-
-                RpaTableData::create([
-                    'name' => $tds[self::NAME]->getText(),
-                    'amount' => $tds[self::AMOUNT]->getText()
-                ]);
-            }
-
-            Log::info('GetAndSaveTableDataController.init - RPA executado com sucesso!');
+            Log::info('GetAndSaveTableDataController.main - RPA executado com sucesso!');
 
         } catch(\Exception $e) {
 
-            Log::error("GetAndSaveTableDataController.init - {$e->getMessage()}");
+            Log::error("GetAndSaveTableDataController.main - {$e->getMessage()}");
+        }
+    }
+
+    private function callFirstPage()
+    {
+        $this->driver->get('https://testpages.herokuapp.com/styled/tag/table.html');
+
+        $caption = $this->driver->findElement(WebDriverBy::cssSelector('#mytable > caption'))->getText();
+
+        if ($caption !== 'This table has information') {
+            throw new \Exception('Tabela "This table has information" não existe');
         }
 
-        $driver->quit();
+        $trs = $this->driver->findElements(WebDriverBy::cssSelector('#mytable tr'));
 
+        array_shift($trs);
+
+        return $trs;
+    }
+
+    private function saveTrsData($trs)
+    {
+        foreach($trs as $tr) {
+
+            $tds = $tr->findElements(WebDriverBy::cssSelector('td'));
+
+            RpaTableData::create([
+                'name' => $tds[self::NAME]->getText(),
+                'amount' => $tds[self::AMOUNT]->getText()
+            ]);
+        }
     }
 }

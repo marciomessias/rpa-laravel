@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\RPA;
 
-use App\Http\Controllers\DriverController;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Facebook\WebDriver\WebDriverBy;
+use App\Http\Controllers\DriverController;
 
 class DownloadAndSaveFileController extends DriverController
 {
@@ -17,7 +17,7 @@ class DownloadAndSaveFileController extends DriverController
         $this->seleniumPath = Storage::path('selenium/');
     }
 
-    public function init()
+    public function main()
     {
         try {
 
@@ -27,11 +27,11 @@ class DownloadAndSaveFileController extends DriverController
 
             Storage::copy("selenium/{$this->getLastFile()}", 'downloaded/Teste TKS');
 
-            Log::info('DownloadAndSaveFile.init - RPA executado com sucesso!');
+            Log::info('DownloadAndSaveFile.main - RPA executado com sucesso!');
 
         } catch(\Exception $e) {
 
-            Log::error("DownloadAndSaveFile.init - {$e->getMessage()}");
+            Log::error("DownloadAndSaveFile.main - {$e->getMessage()}");
         }
     }
 

@@ -28,6 +28,6 @@ class DownloadAndSaveFile extends Command
      */
     public function handle()
     {
-        (new DownloadAndSaveFileController)->init();
+        (new DownloadAndSaveFileController)->main();
     }
 }
