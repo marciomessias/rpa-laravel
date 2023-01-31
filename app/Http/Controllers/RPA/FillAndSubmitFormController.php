@@ -35,7 +35,7 @@ class FillAndSubmitFormController extends DriverController
     {
         $this->driver->get('https://testpages.herokuapp.com/styled/basic-html-form-test.html');
 
-        $this->driver->takeScreenshot(Storage::path('img/'.(new \DateTime('now'))->format('Y-m-d::H:i:s:u').'-fillAndSubmitFormFirstPage.png'));
+        $this->driver->takeScreenshot(Storage::path('img/fillAndSubmit/'.(new \DateTime('now'))->format('Y-m-d::H:i:s:u').'-fillAndSubmitFormFirstPage.png'));
 
         $h1BasicForm = $this->driver->findElement(WebDriverBy::cssSelector('.page-body > h1'))->getText();
         if ($h1BasicForm !== 'Basic HTML Form Example') {
@@ -88,7 +88,7 @@ class FillAndSubmitFormController extends DriverController
             $this->driver->findElement(WebDriverBy::cssSelector('select > option[value=ms4]'))->click();
         }
 
-        $this->driver->takeScreenshot(Storage::path('img/'.(new \DateTime('now'))->format('Y-m-d::H:i:s.u').'-fillAndSubmitFilledForm.png'));
+        $this->driver->takeScreenshot(Storage::path('img/fillAndSubmit/'.(new \DateTime('now'))->format('Y-m-d::H:i:s.u').'-fillAndSubmitFilledForm.png'));
 
         #Dropdown
         $this->driver->findElement(WebDriverBy::cssSelector('select > option[value=dd1]'))->click();
@@ -99,7 +99,7 @@ class FillAndSubmitFormController extends DriverController
 
     private function callSecondPage()
     {
-        $this->driver->takeScreenshot(Storage::path('img/'.(new \DateTime('now'))->format('Y-m-d::H:i:s:u').'-fillAndSubmitAfterSubmit.png'));
+        $this->driver->takeScreenshot(Storage::path('img/fillAndSubmit/'.(new \DateTime('now'))->format('Y-m-d::H:i:s:u').'-fillAndSubmitSecondPage.png'));
 
         #verificar se a tela seguinte ao submit tem o título 'Processed Form Details'
         $h1ProcessForm = $this->driver->findElement(WebDriverBy::cssSelector('.page-body > h1'))->getText();

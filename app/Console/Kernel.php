@@ -15,9 +15,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('rpa:table-data')->hourly();
-        $schedule->command('rpa:form')->everyTwoHours();
-        $schedule->command('rpa:file-download')->daily();
+        $schedule->command('rpa:download-file')->everyMinute();
+        $schedule->command('rpa:table-data')->everyMinute();
+        $schedule->command('rpa:submit-form')->everyMinute();
+        $schedule->command('rpa:upload-file')->everyMinute();
     }
 
     /**

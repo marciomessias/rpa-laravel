@@ -12,14 +12,14 @@ class DownloadAndSaveFile extends Command
      *
      * @var string
      */
-    protected $signature = 'rpa:file-download';
+    protected $signature = 'rpa:download-file';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Baixar e salvar em disco arquivo alterando seu nome';
+    protected $description = 'Baixar e salvar em disco local arquivo alterando seu nome';
 
     /**
      * Execute the console command.
