@@ -73,9 +73,49 @@ class Demostrativo extends TextToArrayHandle
         array_shift($pages);
         array_shift($pages);
 
-        for($i = 0; $i < count($pages); $i++) {
-            
-            $arrayData[] = $OperNotreDameValues;
+        for($n = 0; $n < count($pages); $n++) {
+
+            $this->setCurrentTextPage($pages[2]);
+
+            $values = [
+                $this->getIntervalPartFromText('DADOS DA GUIA', '13 - Número da Guia no Prestador'),
+                $this->getIntervalPartFromText('13 - Número da Guia no Prestador', '14 - Número da Guia Atribuido pela Operador'),
+                $this->getIntervalPartFromText('14 - Número da Guia Atribuido pela Operadora', '15 - Senha'),
+                $this->getIntervalPartFromText('15 - Senha', '16 - Nome do Beneficiário'),
+                $this->getIntervalPartFromText('16 - Nome do Beneficiário', '17 - Número da Carteira'),
+                $this->getIntervalPartFromText('17 - Número da Carteira', '18 - Data Início do Faturamento'),
+                $this->getIntervalPartFromText('20 - Data Fim do Faturamento', '19 - Hora Início do Faturamento'),
+                $this->getIntervalPartFromText('18 - Data Início do Faturamento', '20 - Data Fim do Faturamento'),
+
+                #valores em tabelas
+                'Código da Glosa do Protocolo',
+                'Data de realização',
+                'Tabela',
+                'Código do Procedimento',
+                'Descrição',
+                'Grau Participação',
+                'Valor Informado',
+                'Quanti. Executada',
+                'Valor Processado',
+                'Valor Liberado',
+                'Valor Glosa',
+                'Código da Glosa',
+
+                'Valor Informado da Guia',
+                'Valor Processado da Guia',
+                'Valor Liberado da Guia',
+                'Valor Glosa da Guia',
+                'Valor Informado do Protocolo',
+                'Valor Processado do Protocolo',
+                'Valor Liberado do Protocolo',
+                'Valor Glosa do Protocolo',
+                'Valor Informado Geral',
+                'Valor Processado Geral',
+                'Valor Liberado Geral',
+                'Valor Glosa Geral'
+            ];
+
+            $arrayData[] = array_merge($OperNotreDameValues, $values);
 
             $this->setArrayData($arrayData);
         }
