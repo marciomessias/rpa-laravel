@@ -19,6 +19,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('rpa:table-data')->everyMinute();
         $schedule->command('rpa:submit-form')->everyMinute();
         $schedule->command('rpa:upload-file')->everyMinute();
+        $schedule->command('notredame:demostrativo-pdf-to-csv')->everyMinute();
     }
 
     /**
