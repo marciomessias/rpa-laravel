@@ -35,25 +35,13 @@ class TextToArrayHandle
         $this->currentTextPage = $currentTextPage;
     }
 
-    protected function getIntervalPartFromText($start, $end, $direction = false)
+    protected function getStringPartFromCoordinates($start, $end)
     {
-        $strlenStart = strlen($start);
         $strposStart = strpos($this->currentTextPage, $start);
-
-        if (is_numeric($end)) {
-            if ($direction == 'inverse') {
-                $substrStart = trim(substr($this->currentTextPage, $strposStart - $end));
-                $substrString = trim(substr($substrStart, 0, $end));
-            } else {
-                $substrStart = trim(substr($this->currentTextPage, $strposStart + $strlenStart));
-                $substrString = trim(substr($substrStart, 0, $end));
-            }
-        } else {
-            $substrStart = trim(substr($this->currentTextPage, $strposStart + $strlenStart));
-            $strposEnd = strpos($substrStart, $end);
-            $substrString = trim(substr($substrStart, 0, $strposEnd));
-        }
-
-        return $substrString;
+        $substrStart = substr($this->currentTextPage, $strposStart + strlen($start), 100);
+        $strposEnd = strpos($substrStart, $end);
+        $substrString = substr($substrStart, 0, $strposEnd);
+        $string = explode(PHP_EOL, $substrString);
+        return substr($string[1], 1, strlen($string[1]) - 6);
     }
 }

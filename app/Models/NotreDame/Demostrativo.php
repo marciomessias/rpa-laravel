@@ -53,42 +53,37 @@ class Demostrativo extends TextToArrayHandle
     {
         $arrayData[] = $this->OperNotreDameFields;
 
-        $pages = explode('DEMONSTRATIVO DE ANÁLISE DE CONTA', $this->getText());
+        $pages = explode('240.64 -0.72 TD', $this->getText());
 
-        array_shift($pages);
-
-        $this->setCurrentTextPage($pages[0]);
+        $this->setCurrentTextPage($pages[1]);
 
         $OperNotreDameValues = [
-            $this->getIntervalPartFromText('1 - Registro ANS', '3 - Nome da Operadora'),
-            $this->getIntervalPartFromText('3 - Nome da Operadora', '4 - CNPJ da Operadora'),
-            $this->getIntervalPartFromText('6 - Código na Operadora', 6, 'inverse'),
-            $this->getIntervalPartFromText('6 - Código na Operadora', '7 - Nome do Contratado'),
-            $this->getIntervalPartFromText('8 - Código CNES', '9 - Número do Lote'),
-            $this->getIntervalPartFromText('9 - Número do Lote', '10 - Nº do Protocolo'),
-            $this->getIntervalPartFromText('10 - Nº do Protocolo (Processo)', '11- Data do Protocolo'),
-            $this->getIntervalPartFromText('11- Data do Protocolo', '12 - Código da Glosa do Protocolo')
+            $this->getStringPartFromCoordinates('0.76 -12.92 TD', '105.76 492.00 372.00 26.24 re S'),
+            $this->getStringPartFromCoordinates('0.76 -12.80 TD', '480.88 492.00 146.88 26.24 re S'),
+            $this->getStringPartFromCoordinates('/F2 8.00 Tf', '-0.76 12.04 TD'),
+            $this->getStringPartFromCoordinates('166.56 450.52 TD', '-0.76 11.92 TD'),
+            $this->getStringPartFromCoordinates('3.76 403.48 TD', '-0.76 12.72 TD'),
+            $this->getStringPartFromCoordinates('130.04 404.20 TD', '-0.76 11.56 TD'),
+            $this->getStringPartFromCoordinates('255.56 404.20 TD', '-0.76 11.52 TD'),
+            $this->getStringPartFromCoordinates('-285.16 -45.04 TD', '1.52 492.00 100.52 26.24 re S')
         ];
 
-        array_shift($pages);
-        array_shift($pages);
+        for($n = 3; $n < count($pages); $n++) {
 
-        for($n = 0; $n < count($pages); $n++) {
-
-            $this->setCurrentTextPage($pages[2]);
+            $this->setCurrentTextPage($pages[$n]);
 
             $values = [
-                $this->getIntervalPartFromText('DADOS DA GUIA', '13 - Número da Guia no Prestador'),
-                $this->getIntervalPartFromText('13 - Número da Guia no Prestador', '14 - Número da Guia Atribuido pela Operador'),
-                $this->getIntervalPartFromText('14 - Número da Guia Atribuido pela Operadora', '15 - Senha'),
-                $this->getIntervalPartFromText('15 - Senha', '16 - Nome do Beneficiário'),
-                $this->getIntervalPartFromText('16 - Nome do Beneficiário', '17 - Número da Carteira'),
-                $this->getIntervalPartFromText('17 - Número da Carteira', '18 - Data Início do Faturamento'),
-                $this->getIntervalPartFromText('20 - Data Fim do Faturamento', '19 - Hora Início do Faturamento'),
-                $this->getIntervalPartFromText('18 - Data Início do Faturamento', '20 - Data Fim do Faturamento'),
+                $this->getStringPartFromCoordinates('/F2 8.00 Tf', '-0.76 11.52 TD'),
+                $this->getStringPartFromCoordinates('279.48 497.32 TD', '-0.76 11.52 TD'),
+                $this->getStringPartFromCoordinates('527.04 499.56 TD', '-0.64 11.48 TD'),
+                $this->getStringPartFromCoordinates('3.76 471.20 TD', '-0.76 11.88 TD'),
+                $this->getStringPartFromCoordinates('527.16 471.12 TD', '-0.64 11.52 TD'),
+                $this->getStringPartFromCoordinates('3.64 442.08 TD', '-0.88 12.64 TD'),
+                $this->getStringPartFromCoordinates('134.56 442.04 TD', '-0.68 12.68 TD'),
+                $this->getStringPartFromCoordinates('265.36 442.04 TD', '-0.76 12.68 TD'),
+                $this->getStringPartFromCoordinates('407.68 391.00 TD', '108.20 -39.64 TD'),
 
                 #valores em tabelas
-                'Código da Glosa do Protocolo',
                 'Data de realização',
                 'Tabela',
                 'Código do Procedimento',

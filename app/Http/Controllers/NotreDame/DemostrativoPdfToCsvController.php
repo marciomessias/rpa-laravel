@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\NotreDame;
 
-use Smalot\PdfParser\Parser;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use App\Models\NotreDame\Demostrativo;
@@ -15,7 +14,7 @@ class DemostrativoPdfToCsvController
     {
         try {
 
-            $text = (new Parser())->parseFile(Storage::path('public/Leitura PDF.pdf'))->getText();
+            $text = Storage::get('public/Leitura PDF.pdf');
 
             $this->demostrativo = new Demostrativo($text);
 
