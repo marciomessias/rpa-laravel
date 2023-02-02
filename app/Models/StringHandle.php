@@ -42,7 +42,7 @@ class StringHandle
         return trim(preg_replace('/\(|\) Tj/', '', $rows[$indice]));
     }
 
-    private function getStringByCoordinates($start = false, $end = false)
+    protected function getStringByCoordinates($start = false, $end = false)
     {
         $substrString = '';
 
