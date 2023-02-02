@@ -57,7 +57,7 @@ class Demostrativo extends StringHandle
     {
         $arrayData[] = $this->operNotreDameFields;
 
-        $pages = explode('240.64 -0.72 TD', $this->getString());
+        $pages = explode('(DEMONSTRATIVO DE AN�LISE DE CONTA) Tj', $this->getString());
 
         $this->setCurrentStringPage($pages[1]);
 
@@ -82,7 +82,7 @@ class Demostrativo extends StringHandle
         ];
 
         for($n = 3; $n < count($pages); $n++) {
-            $n = 5;
+
             $this->setCurrentStringPage($pages[$n]);
 
             $medicalGuideValues = [
@@ -96,12 +96,11 @@ class Demostrativo extends StringHandle
                 $this->getFilteredStringByCoordinates('265.36 442.04 TD', '-0.76 12.68 TD'),
                 $this->getFilteredStringByCoordinates(false, '108.20 -39.64 TD'),
 
+                $this->getFilteredStringByCoordinates(false, '154.68 0.00 TD'),
+                $this->getFilteredStringByCoordinates('(TOTAL DA GUIA) Tj', false),
+                $this->getFilteredStringByCoordinates('154.68 0.00 TD', false),
+                $this->getFilteredStringByCoordinates(false, '(35 - Valor Processado da Guia \(R$\)) Tj'),
             ];
-
-            // 'Valor Informado da Guia',
-            // 'Valor Processado da Guia',
-            // 'Valor Liberado da Guia',
-            // 'Valor Glosa da Guia'
 
             // $table = $this->getStringByCoordinates('3.12 402.40 TD', 'endstream');
 
