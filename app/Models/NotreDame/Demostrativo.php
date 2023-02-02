@@ -6,7 +6,7 @@ use App\Models\StringHandle;
 
 class Demostrativo extends StringHandle
 {
-    private $OperNotreDameFields = [
+    private $operNotreDameFields = [
         'Registro ANS',
         'Nome da Operadora',
         'Código na Operadora',
@@ -55,13 +55,13 @@ class Demostrativo extends StringHandle
 
     public function extractInfoFromText()
     {
-        $arrayData[] = $this->OperNotreDameFields;
+        $arrayData[] = $this->operNotreDameFields;
 
         $pages = explode('240.64 -0.72 TD', $this->getString());
 
         $this->setCurrentStringPage($pages[1]);
 
-        $OperNotreDameValues = [
+        $operNotreDameValues = [
             $this->getFilteredStringByCoordinates('0.76 -12.92 TD', '105.76 492.00 372.00 26.24 re S'),
             $this->getFilteredStringByCoordinates('0.76 -12.80 TD', '480.88 492.00 146.88 26.24 re S'),
             $this->getFilteredStringByCoordinates('/F2 8.00 Tf', '-0.76 12.04 TD'),
@@ -82,7 +82,7 @@ class Demostrativo extends StringHandle
         ];
 
         for($n = 3; $n < count($pages); $n++) {
-
+            $n = 5;
             $this->setCurrentStringPage($pages[$n]);
 
             $medicalGuideValues = [
@@ -126,7 +126,7 @@ class Demostrativo extends StringHandle
             // $arraySize = array_search('(23 - Data de ) Tj', $extractData[0]);
             // $qtdRow = $arraySize/10;
 
-            $arrayData[] = array_merge($OperNotreDameValues, $values);
+            $arrayData[] = array_merge($operNotreDameValues, $medicalGuideValues);
 
             $this->setArrayData($arrayData);
         }
