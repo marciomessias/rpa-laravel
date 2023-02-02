@@ -15,6 +15,16 @@ class Demostrativo extends TextToArrayHandle
         'Número do Protocolo',
         'Data do Protocolo',
         'Código da Glosa do Protocolo',
+
+        'Valor Informado do Protocolo',
+        'Valor Processado do Protocolo',
+        'Valor Liberado do Protocolo',
+        'Valor Glosa do Protocolo',
+        'Valor Informado Geral',
+        'Valor Processado Geral',
+        'Valor Liberado Geral',
+        'Valor Glosa Geral',
+
         'Número da Guia no Prestador',
         'Número da Guia Atribuído pela Operadora',
         'Senha',
@@ -38,15 +48,7 @@ class Demostrativo extends TextToArrayHandle
         'Valor Informado da Guia',
         'Valor Processado da Guia',
         'Valor Liberado da Guia',
-        'Valor Glosa da Guia',
-        'Valor Informado do Protocolo',
-        'Valor Processado do Protocolo',
-        'Valor Liberado do Protocolo',
-        'Valor Glosa do Protocolo',
-        'Valor Informado Geral',
-        'Valor Processado Geral',
-        'Valor Liberado Geral',
-        'Valor Glosa Geral'
+        'Valor Glosa da Guia'
     ];
 
     public function extractInfoFromText()
@@ -65,7 +67,16 @@ class Demostrativo extends TextToArrayHandle
             $this->getStringPartFromCoordinates('3.76 403.48 TD', '-0.76 12.72 TD'),
             $this->getStringPartFromCoordinates('130.04 404.20 TD', '-0.76 11.56 TD'),
             $this->getStringPartFromCoordinates('255.56 404.20 TD', '-0.76 11.52 TD'),
-            $this->getStringPartFromCoordinates('-285.16 -45.04 TD', '1.52 492.00 100.52 26.24 re S')
+            $this->getStringPartFromCoordinates('-285.16 -45.04 TD', '1.52 492.00 100.52 26.24 re S'),
+
+            $this->getStringPartFromCoordinates(false, '-106.08 12.04 TD'),
+            $this->getStringPartFromCoordinates('263.36 328.56 TD', '154.68 0.00 TD'),
+            $this->getStringPartFromCoordinates(false, '-419.92 12.04 TD', 3),
+            $this->getStringPartFromCoordinates('159.12 0.00 TD', '-419.92 12.04 TD'),
+            $this->getStringPartFromCoordinates(false, '-106.08 12.80 TD'),
+            $this->getStringPartFromCoordinates('263.36 281.64 TD'),
+            $this->getStringPartFromCoordinates(false, '159.12 0.00 TD'),
+            $this->getStringPartFromCoordinates(false, '-419.88 12.80 TD')
         ];
 
         for($n = 3; $n < count($pages); $n++) {
@@ -81,34 +92,26 @@ class Demostrativo extends TextToArrayHandle
                 $this->getStringPartFromCoordinates('3.64 442.08 TD', '-0.88 12.64 TD'),
                 $this->getStringPartFromCoordinates('134.56 442.04 TD', '-0.68 12.68 TD'),
                 $this->getStringPartFromCoordinates('265.36 442.04 TD', '-0.76 12.68 TD'),
-                $this->getStringPartFromCoordinates('407.68 391.00 TD', '108.20 -39.64 TD'),
-
-                #valores em tabelas
-                'Data de realização',
-                'Tabela',
-                'Código do Procedimento',
-                'Descrição',
-                'Grau Participação',
-                'Valor Informado',
-                'Quanti. Executada',
-                'Valor Processado',
-                'Valor Liberado',
-                'Valor Glosa',
-                'Código da Glosa',
-
-                'Valor Informado da Guia',
-                'Valor Processado da Guia',
-                'Valor Liberado da Guia',
-                'Valor Glosa da Guia',
-                'Valor Informado do Protocolo',
-                'Valor Processado do Protocolo',
-                'Valor Liberado do Protocolo',
-                'Valor Glosa do Protocolo',
-                'Valor Informado Geral',
-                'Valor Processado Geral',
-                'Valor Liberado Geral',
-                'Valor Glosa Geral'
+                $this->getStringPartFromCoordinates(false, '108.20 -39.64 TD')
             ];
+
+            // #medical guide
+            // 'Data de realização',
+            // 'Tabela',
+            // 'Código do Procedimento',
+            // 'Descrição',
+            // 'Grau Participação',
+            // 'Valor Informado',
+            // 'Quanti. Executada',
+            // 'Valor Processado',
+            // 'Valor Liberado',
+            // 'Valor Glosa',
+            // 'Código da Glosa',
+
+            // 'Valor Informado da Guia',
+            // 'Valor Processado da Guia',
+            // 'Valor Liberado da Guia',
+            // 'Valor Glosa da Guia'
 
             $arrayData[] = array_merge($OperNotreDameValues, $values);
 
