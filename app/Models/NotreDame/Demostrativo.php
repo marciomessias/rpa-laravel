@@ -80,7 +80,7 @@ class Demostrativo extends TextToArrayHandle
         ];
 
         for($n = 3; $n < count($pages); $n++) {
-
+            $n = 6;
             $this->setCurrentTextPage($pages[$n]);
 
             $values = [
@@ -113,9 +113,26 @@ class Demostrativo extends TextToArrayHandle
             // 'Valor Liberado da Guia',
             // 'Valor Glosa da Guia'
 
-            $arrayData[] = array_merge($OperNotreDameValues, $values);
+            $table = $this->getDataStringFromInterval($pages[$n], '3.12 402.40 TD', 'endstream');
+            preg_match_all("/\(.*\) Tj/", $table, $extractData);
+            // preg_replace("/\(|\)/", "", $str);
 
-            $this->setArrayData($arrayData);
+            $arraySize = array_search('(23 - Data de ) Tj', $extractData[0]);
+
+            dd($arraySize/10);
+
+            // $arrayData[] = array_merge($OperNotreDameValues, $values);
+
+            // $this->setArrayData($arrayData);
         }
+    }
+
+
+    private function getDataStringFromInterval($pages, $start, $end)
+    {
+        $strposStart = strpos($pages, $start);
+        $substrStart = substr($pages, $strposStart + strlen($start));
+        $strposEnd = strpos($substrStart, $end);
+        return substr($substrStart, 0, $strposEnd);
     }
 }
