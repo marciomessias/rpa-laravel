@@ -32,7 +32,7 @@ class DemostrativoPdfToCsvController
 
     private function createCsvFile()
     {
-        $fopen = fopen(Storage::path('public/demonstrativo.csv'), 'w');
+        $fopen = fopen(Storage::path('public/demonstrativo_notre_dame.csv'), 'w');
 
         foreach ($this->demostrativo->getArrayData() as $row) {
             fputcsv($fopen, $row);

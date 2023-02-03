@@ -51,7 +51,7 @@ class StringHandle
     {
         if($start) {
             $strposStart = strpos($this->currentStringPage, $start);
-            $substrStart = substr($this->currentStringPage, $strposStart + strlen($start), 500);
+            $substrStart = substr($this->currentStringPage, $strposStart + strlen($start));
             $strposEnd = $end === false ? 500 : strpos($substrStart, $end);
             return substr($substrStart, 0, $strposEnd);
         }
