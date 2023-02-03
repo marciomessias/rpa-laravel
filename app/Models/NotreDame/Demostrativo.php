@@ -85,12 +85,26 @@ class Demostrativo extends StringHandle
             $this->getFilteredStringByCoordinates(false, '-419.88 12.80 TD'),
         ];
 
+        $guideNumber = '';
+
+        $medicalGuidePages = array_reverse($medicalGuidePages);
+
         for($n = 0; $n < count($medicalGuidePages); $n++) {
 
             $this->setCurrentStringPage($medicalGuidePages[$n]);
 
+            $currentGuideNumber = $this->getFilteredStringByCoordinates('/F2 8.00 Tf', '-0.76 11.52 TD');
+
+            if ($guideNumber != $currentGuideNumber) {
+                $guideNumber = $currentGuideNumber;
+                $valorInformadoGuia = $this->getFilteredStringByCoordinates('(TOTAL DA GUIA) Tj');
+                $valorProcessadoGuia = $this->getFilteredStringByCoordinates('(34 - Valor Informado da Guia \(R$\)) Tj');
+                $valorLiberadoGuia = $this->getFilteredStringByCoordinates('(34 - Valor Informado da Guia \(R$\)) Tj', false, 1);
+                $valorGlosaGuia = $this->getFilteredStringByCoordinates(false, '(35 - Valor Processado da Guia \(R$\)) Tj');
+            }
+
             $medicalGuideValues = [
-                $this->getFilteredStringByCoordinates('/F2 8.00 Tf', '-0.76 11.52 TD'),
+                $guideNumber,
                 $this->getFilteredStringByCoordinates('279.48 497.32 TD', '-0.76 11.52 TD'),
                 $this->getFilteredStringByCoordinates('527.04 499.56 TD', '-0.64 11.48 TD'),
                 $this->getFilteredStringByCoordinates('3.76 471.20 TD', '-0.76 11.88 TD'),
@@ -100,10 +114,10 @@ class Demostrativo extends StringHandle
                 $this->getFilteredStringByCoordinates('265.36 442.04 TD', '-0.76 12.68 TD'),
                 $this->getFilteredStringByCoordinates(false, '108.20 -39.64 TD'),
 
-                $this->getFilteredStringByCoordinates(false, '154.68 0.00 TD'),
-                $this->getFilteredStringByCoordinates('(TOTAL DA GUIA) Tj', false),
-                $this->getFilteredStringByCoordinates('154.68 0.00 TD', false),
-                $this->getFilteredStringByCoordinates(false, '(35 - Valor Processado da Guia \(R$\)) Tj'),
+                $valorInformadoGuia,
+                $valorProcessadoGuia,
+                $valorLiberadoGuia,
+                $valorGlosaGuia,
             ];
 
             $medicalGuideTable = $this->getStringByCoordinates('3.12 402.40 TD', 'endstream');
