@@ -128,10 +128,20 @@ class Demostrativo extends StringHandle
                 $arrayValorGlosa = array_slice($tableData, $qtdRow * 9, $qtdRow);
                 $arrayCodigoGlosa = array_slice($extractData[0], count($extractData[0]) - $qtdRow);
 
-                for($r = 0; count($qtdRow); $r++) {
+                for($r = 0; $r < $qtdRow; $r++) {
 
                     $rowTable = [
-                        trim(preg_replace('/\(|\) Tj/', '', $arrayRealizacao[$r]))
+                        trim(preg_replace('/\(|\) Tj/', '', $arrayRealizacao[$r])),
+                        trim(preg_replace('/\(|\) Tj/', '', $arrayTabela[$r])),
+                        trim(preg_replace('/\(|\) Tj/', '', $arrayProcedimento[$r])),
+                        trim(preg_replace('/\(|\) Tj/', '', $arrayDescricao[$r])),
+                        trim(preg_replace('/\(|\) Tj/', '', $arrayGrauParticipacao[$r])),
+                        trim(preg_replace('/\(|\) Tj/', '', $arrayValorInformado[$r])),
+                        trim(preg_replace('/\(|\) Tj/', '', $arrayQuantiExecutada[$r])),
+                        trim(preg_replace('/\(|\) Tj/', '', $arrayValorProcessado[$r])),
+                        trim(preg_replace('/\(|\) Tj/', '', $arrayValorLiberado[$r])),
+                        trim(preg_replace('/\(|\) Tj/', '', $arrayValorGlosa[$r])),
+                        trim(preg_replace('/\(|\) Tj/', '', $arrayCodigoGlosa[$r])),
                     ];
 
                     $arrayData[] = array_merge($operNotreDameValues, $medicalGuideValues, $rowTable);
